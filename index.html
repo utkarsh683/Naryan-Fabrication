@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naryan Enterprise | Precision Metal Work</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <!-- Animate.css for animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- 3D CSS Effects -->
+    <style>
+        :root {
+            --primary: #0d3b66;
+            --secondary: #f95738;
+            --accent: #ee964b;
+            --light: #faf0ca;
+            --dark: #1a1a2e;
+            --success: #4caf50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        /* Logo Styling */
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+        
+        .logo-subtext {
+            font-size: 0.7rem;
+            color: var(--secondary);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        /* 3D Effects */
+        .scene-3d {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .card-3d:hover {
+            transform: translateY(-20px) rotateX(10deg) rotateY(5deg);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+        
+        .floating-3d {
+            animation: float3d 6s ease-in-out infinite;
+        }
+        
+        @keyframes float3d {
+            0%, 100% { transform: translateY(0) rotateY(0); }
+            25% { transform: translateY(-20px) rotateY(5deg); }
+            50% { transform: translateY(-10px) rotateY(0); }
+            75% { transform: translateY(-15px) rotateY(-5deg); }
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
+        }
+        
+        /* Navigation */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            transition: all 0.3s;
+        }
+        
+        .nav-link {
+            font-weight: 600;
+            margin: 0 10px;
+            color: var(--dark) !important;
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: var(--secondary);
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover:after, .nav-link.active:after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            padding: 180px 0 120px;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+        
+        .hero-highlight {
+            color: var(--accent);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hero-highlight:after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background-color: var(--secondary);
+            opacity: 0.4;
+            z-index: -1;
+        }
+        
+        .owner-badge {
+            background: rgba(249, 87, 56, 0.2);
+            border: 2px solid var(--secondary);
+            border-radius: 50px;
+            padding: 10px 25px;
+            display: inline-block;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+        
+        /* 3D Stats Counter */
+        .stats-counter {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px 30px;
+            margin-top: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .counter-item {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .counter-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .counter-label {
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Counting Animation */
+        .count-up {
+            display: inline-block;
+        }
+        
+        /* Section Styling */
+        .section-padding {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+        
+        .section-title h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .title-border {
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            margin: 0 auto;
+            border-radius: 5px;
+        }
+        
+        /* About Section */
+        .about-section {
+            background-color: var(--light);
+            position: relative;
+        }
+        
+        .owner-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transform: rotateY(-5deg);
+            transition: transform 0.5s;
+        }
+        
+        .owner-card:hover {
+            transform: rotateY(0);
+        }
+        
+        .owner-img {
+            height: 300px;
+            object-fit: cover;
+            width: 100%;
+        }
+        
+        .owner-info {
+            padding: 30px;
+        }
+        
+        .owner-name {
+            color: var(--primary);
+            font-weight: 800;
+            margin-bottom: 5px;
+            font-size: 2rem;
+        }
+        
+        .owner-title {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .owner-motto {
+            font-style: italic;
+            color: #666;
+            border-left: 4px solid var(--accent);
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+        
+        /* Project Gallery */
+        .project-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+            gap: 10px;
+        }
+        
+        .filter-btn {
+            background: white;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .project-card {
+            margin-bottom: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            height: 100%;
+        }
+        
+        .project-img-container {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .project-card:hover .project-img {
+            transform: scale(1.1);
+        }
+        
+        .project-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--secondary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .project-content {
+            padding: 25px;
+        }
+        
+        .project-number {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        /* Quality Assurance */
+        .quality-badge {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 30px;
+            transform: rotateY(10deg);
+            transition: transform 0.5s;
+        }
+        
+        .quality-badge:hover {
+            transform: rotateY(0);
+        }
+        
+        .quality-percent {
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 1;
+            color: var(--accent);
+            text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Why Choose Us */
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            height: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            border-left: 5px solid var(--primary);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-left-color: var(--secondary);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+        
+        /* Feedback Section */
+        .feedback-section {
+            background-color: #f8f9fa;
+        }
+        
+        .feedback-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            height: 100%;
+        }
+        
+        .feedback-header {
+            background: var(--primary);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .feedback-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .feedback-body {
+            padding: 30px;
+        }
+        
+        .star-rating {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .star-rating input {
+            display: none;
+        }
+        
+        .star-rating label {
+            font-size: 2rem;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .star-rating input:checked ~ label,
+        .star-rating label:hover,
+        .star-rating label:hover ~ label {
+            color: var(--accent);
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-info-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            height: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 70px 0 20px;
+        }
+        
+        .footer-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--accent);
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        /* 3D Floating Elements */
+        .floating-element {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: rgba(249, 87, 56, 0.1);
+            border-radius: 20px;
+            z-index: -1;
+        }
+        
+        .fe-1 {
+            top: 10%;
+            left: 5%;
+            animation: float 25s infinite linear;
+        }
+        
+        .fe-2 {
+            top: 20%;
+            right: 10%;
+            animation: float 20s infinite linear reverse;
+        }
+        
+        .fe-3 {
+            bottom: 15%;
+            left: 7%;
+            animation: float 30s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-1000px) rotate(720deg); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+            
+            .counter-number {
+                font-size: 2.8rem;
+                min-height: 60px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .counter-number {
+                font-size: 2.5rem;
+                min-height: 50px;
+            }
+            
+            .section-padding {
+                padding: 70px 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            
+            .owner-badge {
+                padding: 8px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .counter-number {
+                font-size: 2rem;
+                min-height: 40px;
+            }
+            
+            .counter-label {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Background Elements -->
+    <div class="floating-element fe-1"></div>
+    <div class="floating-element fe-2"></div>
+    <div class="floating-element fe-3"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <div class="logo-container">
+                    <div class="me-2">
+                        <i class="bi bi-gear-fill" style="font-size: 2.5rem; color: var(--secondary);"></i>
+                    </div>
+                    <div>
+                        <div class="logo-text">NARYAN ENTERPRISE</div>
+                        <div class="logo-subtext">PRECISION METAL WORK</div>
+                    </div>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#whyus">Why Choose Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#feedback">Feedback</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="hero-title animate__animated animate__fadeInUp">
+                        <span class="hero-highlight">NARYAN ENTERPRISE</span><br>
+                        Precision Metal Work Solutions
+                    </h1>
+                    <p class="lead mb-4 animate__animated animate__fadeInUp animate__delay-1s">
+                        We deliver exceptional metal fabrication and welding services with <strong>100% quality assurance</strong> and on-time delivery. From small custom pieces to large industrial projects.
+                    </p>
+                    <div class="owner-badge animate__animated animate__fadeInUp animate__delay-2s">
+                        <i class="bi bi-person-check-fill me-2"></i> Owned & Operated by <strong>Jaimin Patel</strong>
+                    </div>
+                    <div class="d-flex flex-wrap gap-3 mt-4 justify-content-center animate__animated animate__fadeInUp animate__delay-3s">
+                        <a href="#contact" class="btn btn-primary btn-lg px-4 py-3">Get Free Quote</a>
+                        <a href="#projects" class="btn btn-outline-light btn-lg px-4 py-3">View Our Projects</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Updated Stats Counter with counting animation -->
+            <div class="row mt-5">
+                <div class="col-lg-10 mx-auto">
+                    <div class="stats-counter scene-3d">
+                        <div class="row text-center">
+                            <div class="col-md-3 col-6 mb-4">
+                                <div class="counter-item">
+                                    <div class="counter-number" id="project-counter">
+                                        <span class="count-up">0</span><span>+</span>
+                                    </div>
+                                    <div class="counter-label">Projects Done</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6 mb-4">
+                                <div class="counter-item">
+                                    <div class="counter-number" id="client-counter">
+                                        <span class="count-up">0</span>
+                                    </div>
+                                    <div class="counter-label">Happy Clients</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6 mb-4">
+                                <div class="counter-item">
+                                    <div class="counter-number" id="year-counter">
+                                        <span class="count-up">0</span>
+                                    </div>
+                                    <div class="counter-label">Years Experience</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6 mb-4">
+                                <div class="counter-item">
+                                    <div class="counter-number" id="quality-counter">
+                                        <span class="count-up">0</span><span>%</span>
+                                    </div>
+                                    <div class="counter-label">Quality</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-padding about-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Naryan Enterprise</h2>
+                <p>We are a premier metal fabrication and welding company with years of experience in delivering high-quality custom metal work.</p>
+                <div class="title-border"></div>
+            </div>
+            
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="owner-card scene-3d">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="owner-img" alt="Jaimin Patel">
+                        <div class="owner-info">
+                            <h3 class="owner-name">Jaimin Patel</h3>
+                            <p class="owner-title">Founder & Lead Fabricator</p>
+                            <p class="owner-motto">"Precision in every weld, excellence in every project"</p>
+                            <p class="mb-3">With over 15 years of experience in metal fabrication and welding, Jaimin Patel leads Naryan Enterprise with a commitment to quality and customer satisfaction.</p>
+                            <div class="contact-info">
+                                <p><i class="bi bi-telephone-fill me-2"></i> <strong>9624143867</strong></p>
+                                <p><i class="bi bi-geo-alt-fill me-2"></i> Karmadi, Karjan, Varodara 391240</p>
+                                <p><i class="bi bi-envelope-fill me-2"></i> jaimin@naryanenterprise.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="ps-lg-5">
+                        <h3 class="mb-4">Our Journey to <span class="text-primary">Excellence</span></h3>
+                        <p class="mb-4">Naryan Enterprise has evolved into a trusted name in precision metal work, combining traditional craftsmanship with modern technology to deliver superior results.</p>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex">
+                                    <i class="bi bi-check-circle-fill text-success me-2 fs-5"></i>
+                                    <div>
+                                        <h5>Quality Assurance</h5>
+                                        <p>100% quality check on every project</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex">
+                                    <i class="bi bi-check-circle-fill text-success me-2 fs-5"></i>
+                                    <div>
+                                        <h5>Expert Team</h5>
+                                        <p>Skilled welders and fabricators</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex">
+                                    <i class="bi bi-check-circle-fill text-success me-2 fs-5"></i>
+                                    <div>
+                                        <h5>Modern Equipment</h5>
+                                        <p>Latest fabrication technology</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="d-flex">
+                                    <i class="bi bi-check-circle-fill text-success me-2 fs-5"></i>
+                                    <div>
+                                        <h5>Timely Delivery</h5>
+                                        <p>On-time project completion</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="quality-badge scene-3d">
+                            <div class="quality-percent">100%</div>
+                            <h4>Quality Assurance Guaranteed</h4>
+                            <p class="mb-0">Every project undergoes rigorous quality checks before delivery</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Projects</h2>
+                <p>Explore our portfolio of completed fabrication and welding projects across various industries.</p>
+                <div class="title-border"></div>
+            </div>
+            
+            <!-- Project Filters -->
+            <div class="project-filter">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="structural">Structural</button>
+                <button class="filter-btn" data-filter="welding">Welding</button>
+                <button class="filter-btn" data-filter="industrial">Industrial</button>
+                <button class="filter-btn" data-filter="custom">Custom</button>
+            </div>
+            
+            <!-- Projects Grid -->
+            <div class="row" id="projects-grid">
+                <!-- Projects will be loaded dynamically -->
+            </div>
+            
+            <div class="text-center mt-5">
+                <button class="btn btn-primary btn-lg" id="load-more-projects">Load More Projects</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="whyus" class="section-padding" style="background-color: #f8f9fa;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Naryan Enterprise</h2>
+                <p>We stand out from the competition with these key advantages</p>
+                <div class="title-border"></div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card card-3d">
+                        <div class="feature-icon">
+                            <i class="bi bi-award"></i>
+                        </div>
+                        <h4>100% Quality Guarantee</h4>
+                        <p>We guarantee the highest quality standards for every project, with thorough inspection at every stage of fabrication.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card card-3d">
+                        <div class="feature-icon">
+                            <i class="bi bi-clock-history"></i>
+                        </div>
+                        <h4>On-Time Delivery</h4>
+                        <p>We respect your deadlines and ensure timely project completion without compromising on quality.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card card-3d">
+                        <div class="feature-icon">
+                            <i class="bi bi-currency-exchange"></i>
+                        </div>
+                        <h4>Competitive Pricing</h4>
+                        <p>Get the best value for your investment with transparent pricing and no hidden costs.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card card-3d">
+                        <div class="feature-icon">
+                            <i class="bi bi-tools"></i>
+                        </div>
+                        <h4>Modern Equipment</h4>
+                        <p>We use the latest fabrication technology and equipment for precision and efficiency.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card card-3d">
+                        <div class="feature-icon">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <h4>Safety First Approach</h4>
+                        <p>All our operations follow strict safety protocols to ensure a safe working environment.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card card-3d">
+                        <div class="feature-icon">
+                            <i class="bi bi-headset"></i>
+                        </div>
+                        <h4>Expert Support</h4>
+                        <p>Our team provides expert consultation and support from project conception to completion.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feedback Section -->
+    <section id="feedback" class="section-padding feedback-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Customer Feedback</h2>
+                <p>Share your experience working with Naryan Enterprise</p>
+                <div class="title-border"></div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="feedback-card card-3d">
+                        <div class="feedback-header">
+                            <h3 class="feedback-title">Share Your Feedback</h3>
+                            <p>We value your opinion to help us improve our services</p>
+                        </div>
+                        <div class="feedback-body">
+                            <form id="feedbackForm">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="feedback-name" class="form-label">Full Name</label>
+                                        <input type="text" class="form-control" id="feedback-name" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="feedback-email" class="form-label">Email Address</label>
+                                        <input type="email" class="form-control" id="feedback-email" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="feedback-project" class="form-label">Project Type</label>
+                                    <select class="form-select" id="feedback-project" required>
+                                        <option value="">Select a service</option>
+                                        <option value="structural">Structural Fabrication</option>
+                                        <option value="welding">Custom Welding</option>
+                                        <option value="industrial">Industrial Metal Work</option>
+                                        <option value="machining">Precision Machining</option>
+                                        <option value="repair">Metal Repair & Maintenance</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label">Rating</label>
+                                    <div class="star-rating">
+                                        <input type="radio" id="star5" name="rating" value="5">
+                                        <label for="star5">★</label>
+                                        <input type="radio" id="star4" name="rating" value="4">
+                                        <label for="star4">★</label>
+                                        <input type="radio" id="star3" name="rating" value="3">
+                                        <label for="star3">★</label>
+                                        <input type="radio" id="star2" name="rating" value="2">
+                                        <label for="star2">★</label>
+                                        <input type="radio" id="star1" name="rating" value="1">
+                                        <label for="star1">★</label>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="feedback-message" class="form-label">Your Feedback</label>
+                                    <textarea class="form-control" id="feedback-message" rows="4" placeholder="Please share your experience working with us, what you liked, and how we can improve..."></textarea>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary btn-lg px-5">Submit Feedback</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding contact-section">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="text-white">Contact Us</h2>
+                <p class="text-white">Get in touch for a free consultation and quote</p>
+                <div class="title-border" style="background: white;"></div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <div class="contact-info-card card-3d">
+                        <div class="contact-icon">
+                            <i class="bi bi-geo-alt"></i>
+                        </div>
+                        <h4>Our Location</h4>
+                        <p>Karmadi, Karjan, Varodara 391240, Gujarat, India</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <div class="contact-info-card card-3d">
+                        <div class="contact-icon">
+                            <i class="bi bi-telephone"></i>
+                        </div>
+                        <h4>Phone Number</h4>
+                        <p>9624143867</p>
+                        <p>Mon-Sat: 8:00 AM - 8:00 PM</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <div class="contact-info-card card-3d">
+                        <div class="contact-icon">
+                            <i class="bi bi-envelope"></i>
+                        </div>
+                        <h4>Email Address</h4>
+                        <p>info@naryanenterprise.com</p>
+                        <p>jaimin@naryanenterprise.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-lg-8 mx-auto">
+                    <div class="card card-3d">
+                        <div class="card-body p-4 p-md-5">
+                            <h3 class="text-center mb-4">Request a Quote</h3>
+                            <form id="quoteForm">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="name" class="form-label">Full Name</label>
+                                        <input type="text" class="form-control" id="name" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="phone" class="form-label">Phone Number</label>
+                                        <input type="tel" class="form-control" id="phone" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="service" class="form-label">Service Required</label>
+                                    <select class="form-select" id="service" required>
+                                        <option value="">Select a service</option>
+                                        <option value="structural">Structural Fabrication</option>
+                                        <option value="welding">Custom Welding</option>
+                                        <option value="industrial">Industrial Metal Work</option>
+                                        <option value="machining">Precision Machining</option>
+                                        <option value="repair">Metal Repair & Maintenance</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">Project Details</label>
+                                    <textarea class="form-control" id="message" rows="4" placeholder="Please describe your project requirements, dimensions, materials, and timeline..."></textarea>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary btn-lg px-5">Submit Request</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <h3 class="footer-title">
+                        <i class="bi bi-gear-fill logo-icon"></i>
+                        NARYAN ENTERPRISE
+                    </h3>
+                    <p class="mt-3">Precision metal fabrication and welding solutions with 100% quality assurance and customer satisfaction guaranteed.</p>
+                    <div class="social-icons mt-4">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-whatsapp"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                        <a href="#"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-5 mb-md-0">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links list-unstyled">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#projects">Our Projects</a></li>
+                        <li><a href="#whyus">Why Choose Us</a></li>
+                        <li><a href="#feedback">Feedback</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 mb-5 mb-md-0">
+                    <h4 class="footer-title">Our Services</h4>
+                    <ul class="footer-links list-unstyled">
+                        <li><a href="#">Structural Fabrication</a></li>
+                        <li><a href="#">Custom Welding</a></li>
+                        <li><a href="#">Industrial Metal Work</a></li>
+                        <li><a href="#">Precision Machining</a></li>
+                        <li><a href="#">Metal Repair & Maintenance</a></li>
+                        <li><a href="#">Metal Art & Design</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-4">
+                    <h4 class="footer-title">Contact Info</h4>
+                    <ul class="footer-links list-unstyled">
+                        <li><i class="bi bi-geo-alt me-2"></i> Karmadi, Karjan, Varodara 391240</li>
+                        <li><i class="bi bi-telephone me-2"></i> 9624143867</li>
+                        <li><i class="bi bi-envelope me-2"></i> info@naryanenterprise.com</li>
+                        <li><i class="bi bi-clock me-2"></i> Mon-Sat: 8AM-8PM</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <hr class="mt-5 mb-4" style="border-color: rgba(255,255,255,0.1);">
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; 2023 Naryan Enterprise. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>Designed by <strong>Utkarsh Patel</strong> for the fabrication industry</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Project Data with specific images for each type
+        const projects = [
+            { 
+                id: 1, 
+                title: "Industrial Steel Structure", 
+                category: "structural", 
+                number: "NE-2023-127", 
+                img: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", 
+                description: "Large-scale steel framework for industrial facility with precision engineering"
+            },
+            { 
+                id: 2, 
+                title: "Custom Metal Staircase", 
+                category: "welding", 
+                number: "NE-2023-128", 
+                img: "https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", 
+                description: "Handcrafted spiral staircase with intricate metalwork for commercial building"
+            },
+            { 
+                id: 3, 
+                title: "Warehouse Storage System", 
+                category: "industrial", 
+                number: "NE-2023-129", 
+                img: "https://images.unsplash.com/photo-1553729784-e91953dec042?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", 
+                description: "Heavy-duty storage racks and shelving system for warehouse optimization"
+            },
+            { 
+                id: 4, 
+                title: "Architectural Metal Art", 
+                category: "custom", 
+                number: "NE-2023-130", 
+                img: "https://images.unsplash.com/photo-1546387903-6d82d96ccca6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", 
+                description: "Decorative metal artwork and sculptures for public spaces and buildings"
+            },
+            { 
+                id: 5, 
+                title: "Precision Machine Parts", 
+                category: "industrial", 
+                number: "NE-2023-131", 
+                img: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", 
+                description: "Custom machined components with tight tolerances for industrial equipment"
+            },
+            { 
+                id: 6, 
+                title: "Structural Steel Framework", 
+                category: "structural", 
+                number: "NE-2023-132", 
+                img: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", 
+                description: "Steel beams and columns for commercial building construction"
+            }
+        ];
+
+        // DOM Elements
+        const projectsGrid = document.getElementById('projects-grid');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const loadMoreBtn = document.getElementById('load-more-projects');
+        const projectCounter = document.getElementById('project-counter').querySelector('.count-up');
+        const clientCounter = document.getElementById('client-counter').querySelector('.count-up');
+        const yearCounter = document.getElementById('year-counter').querySelector('.count-up');
+        const qualityCounter = document.getElementById('quality-counter').querySelector('.count-up');
+        const quoteForm = document.getElementById('quoteForm');
+        const feedbackForm = document.getElementById('feedbackForm');
+
+        // Variables
+        let displayedProjects = 6;
+        let currentFilter = 'all';
+
+        // Initialize Counters with animation
+        function initializeCounters() {
+            // Animate counting for each counter
+            animateCounter(projectCounter, 0, 50, 2000, () => {
+                // Add "+" sign after animation completes
+                document.getElementById('project-counter').innerHTML = '<span class="count-up">50</span><span>+</span>';
+            });
+            animateCounter(clientCounter, 0, 50, 2000);
+            animateCounter(yearCounter, 0, 15, 2000);
+            animateCounter(qualityCounter, 0, 100, 2000, () => {
+                // Add "%" sign after animation completes
+                document.getElementById('quality-counter').innerHTML = '<span class="count-up">100</span><span>%</span>';
+            });
+        }
+
+        // Animate Counter Function
+        function animateCounter(element, start, end, duration, callback) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                element.innerHTML = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                } else if (callback) {
+                    callback();
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Load Projects
+        function loadProjects(filter = 'all', limit = displayedProjects) {
+            projectsGrid.innerHTML = '';
+            
+            const filteredProjects = filter === 'all' 
+                ? projects 
+                : projects.filter(project => project.category === filter);
+            
+            const projectsToShow = filteredProjects.slice(0, limit);
+            
+            projectsToShow.forEach(project => {
+                const col = document.createElement('div');
+                col.className = 'col-lg-4 col-md-6';
+                
+                col.innerHTML = `
+                    <div class="project-card card-3d" data-category="${project.category}">
+                        <div class="project-img-container">
+                            <img src="${project.img}" class="project-img" alt="${project.title}">
+                            <div class="project-badge">${project.category.toUpperCase()}</div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-number">${project.number}</div>
+                            <h4>${project.title}</h4>
+                            <p class="text-muted">${project.description}</p>
+                            <a href="#" class="btn btn-outline-primary">View Details</a>
+                        </div>
+                    </div>
+                `;
+                
+                projectsGrid.appendChild(col);
+            });
+            
+            // Update load more button visibility
+            if (filteredProjects.length <= limit) {
+                loadMoreBtn.style.display = 'none';
+            } else {
+                loadMoreBtn.style.display = 'inline-block';
+            }
+        }
+
+        // Filter Projects
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active filter button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // Update current filter and load projects
+                currentFilter = button.getAttribute('data-filter');
+                displayedProjects = 6;
+                loadProjects(currentFilter, displayedProjects);
+            });
+        });
+
+        // Load More Projects
+        loadMoreBtn.addEventListener('click', () => {
+            displayedProjects += 3;
+            loadProjects(currentFilter, displayedProjects);
+        });
+
+        // Quote Form Submission
+        quoteForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value;
+            
+            // In a real application, you would send this data to a server
+            // For now, we'll just show a confirmation
+            alert(`Thank you ${name}! Your quote request has been submitted. We will contact you at ${phone} or ${email} within 24 hours.`);
+            
+            // Reset form
+            quoteForm.reset();
+        });
+
+        // Feedback Form Submission
+        feedbackForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const name = document.getElementById('feedback-name').value;
+            const email = document.getElementById('feedback-email').value;
+            const project = document.getElementById('feedback-project').value;
+            const rating = document.querySelector('input[name="rating"]:checked');
+            const message = document.getElementById('feedback-message').value;
+            
+            if (!rating) {
+                alert("Please select a rating before submitting.");
+                return;
+            }
+            
+            // In a real application, you would send this data to a server
+            // For now, we'll just show a confirmation
+            alert(`Thank you ${name} for your feedback! Your ${rating.value}-star rating has been recorded. We appreciate your input.`);
+            
+            // Reset form
+            feedbackForm.reset();
+            
+            // Reset star rating
+            document.querySelectorAll('input[name="rating"]').forEach(radio => {
+                radio.checked = false;
+            });
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Navbar Background on Scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            }
+            
+            // Update active nav link based on scroll position
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize counters with animation
+            initializeCounters();
+            
+            // Load initial projects
+            loadProjects('all', displayedProjects);
+            
+            // Add animation to cards on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe elements to animate
+            document.querySelectorAll('.feature-card, .project-card, .feedback-card').forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
